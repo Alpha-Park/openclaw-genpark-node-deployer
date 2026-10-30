@@ -1,0 +1,10 @@
+{
+  "name": "openclaw-genpark-node-deployer",
+  "version": "1.0.0",
+  "description": "OpenClaw GenPark Node Deployer - Multi-dimensional bin-packing (Best Fit Decreasing) and rolling blue-green canary deployment scheduler with zero external dependencies.",
+  "tools": [
+    "schedule_multi_dimensional_bin_packing",
+    "calculate_rolling_canary_deployment_schedule",
+    "evaluate_cluster_node_health_entropy"
+  ]
+}
