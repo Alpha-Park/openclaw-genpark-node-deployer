@@ -8,18 +8,9 @@ import json
 from typing import Dict, Any, List, Optional
 from client import OpenClawGenParkNodeDeployer
 
-try:
-    from mcp.server.fastmcp import FastMCP
-    mcp = FastMCP("openclaw-genpark-node-deployer")
-except ImportError:
-    class MockFastMCP:
-        def __init__(self, name):
-            self.name = name
-        def tool(self):
-            def decorator(f):
-                return f
-            return decorator
-    mcp = MockFastMCP("openclaw-genpark-node-deployer")
+from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP('openclaw-genpark-node-deployer')
 
 deployer = OpenClawGenParkNodeDeployer()
 
@@ -57,10 +48,7 @@ def evaluate_cluster_node_health_entropy(
     return json.dumps(res, indent=2)
 
 def main():
-    nodes = [{"node_id": "worker-1", "cpu_millicores": 4000, "ram_mb": 16384, "gpu_units": 1}]
-    tasks = [{"task_id": "agent-1", "cpu_millicores": 1000, "ram_mb": 2048, "gpu_units": 0}]
-    print("Testing Node Deployer:")
-    print(schedule_multi_dimensional_bin_packing(nodes, tasks))
+    mcp.run(transport="stdio")
 
 if __name__ == "__main__":
     main()
